@@ -1,9 +1,18 @@
 html {
   font-size: 14px;
 }
-
+h1{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-shadow: 0 2px 2px rgb(0,0,0);
+}
+.container-main-product{
+    background-color:rgba(0,0,0,0.6);
+}
+.container-main-product:hover{
+    box-shadow: 0 0 9px 4px rgba(0,0,0,0.3);
+}
 @media (min-width: 768px) {
-  html {
+    html {
     font-size: 16px;
   }
 }
