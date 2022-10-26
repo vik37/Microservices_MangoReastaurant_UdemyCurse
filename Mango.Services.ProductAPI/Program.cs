@@ -3,10 +3,9 @@ using Mango.Services.ProductAPI;
 using Mango.Services.ProductAPI.DbContexts;
 using Mango.Services.ProductAPI.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
-using System.Security.Cryptography.Xml;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +22,8 @@ services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 services.AddScoped<IProductRepository, ProductRepository>();
+services.AddControllers();
+services.AddEndpointsApiExplorer();
 
 services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", opt =>
@@ -48,10 +49,10 @@ services.AddSwaggerGen(c =>
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"Enter 'Bearer' [space] and your token",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
+        Name = HeaderNames.Authorization,
+        In = ParameterLocation.Header, // or magic string "Authorization"
         Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Scheme = "Bearer",
     });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -71,8 +72,7 @@ services.AddSwaggerGen(c =>
         }
     });
 });
-services.AddControllers();
-services.AddEndpointsApiExplorer();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -87,7 +87,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
