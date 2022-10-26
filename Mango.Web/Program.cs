@@ -4,17 +4,36 @@ using Mango.Web.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
-
+var services = builder.Services;
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+services.AddControllersWithViews();
 
-builder.Services.AddRazorPages()
+services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
 
-builder.Services.AddHttpClient<IProductService, ProductService>();
+services.AddHttpClient<IProductService, ProductService>();
 SD.ProductAPIBase = configuration["ServiceUrls:ProductAPI"];
 
-builder.Services.AddScoped<IProductService,ProductService>();
+services.AddScoped<IProductService,ProductService>();
+
+services.AddAuthentication(opt =>
+{
+    opt.DefaultScheme = "Cookies";
+    opt.DefaultChallengeScheme = "oidc";
+})
+    .AddCookie("Cookies",c => c.ExpireTimeSpan = TimeSpan.FromMinutes(10))
+    .AddOpenIdConnect("oidc",opt =>
+    {
+        opt.Authority = configuration["ServiceUrls:IdentityAPI"];
+        opt.GetClaimsFromUserInfoEndpoint = true;
+        opt.ClientId = "mango";
+        opt.ClientSecret = "secret";
+        opt.ResponseType = "code";
+        opt.TokenValidationParameters.NameClaimType = "name";
+        opt.TokenValidationParameters.RoleClaimType = "role";
+        opt.Scope.Add("mango");
+        opt.SaveTokens = true;
+    });
 
 var app = builder.Build();
 
@@ -30,7 +49,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
