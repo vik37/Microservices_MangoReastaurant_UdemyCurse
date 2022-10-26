@@ -49,26 +49,10 @@ app.UseRouting();
 app.UseIdentityServer();
 
 app.UseAuthorization();
-SeedDatabase();
+SeedHelper.SeedDb(app);
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-
-void SeedDatabase()
-{
-
-    var context = app.Services.CreateScope().ServiceProvider.GetService<ApplicationDbContext>();
-
-    var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserManager<ApplicationUser>>();
-
-    var roleManager = app.Services.CreateScope().ServiceProvider.GetService<RoleManager<IdentityRole>>();
-
-    var dbInitializer = new DbInitializer(context, userManager, roleManager);
-
-    dbInitializer.Initialize();
-
-}
