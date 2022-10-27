@@ -18,7 +18,7 @@ services.AddDbContext<ApplicationDbContext>(opt =>
 
 IMapper mapper = MappingConfig.RegisterMapp().CreateMapper();
 services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //services.AddScoped<IProductRepository, ProductRepository>();
 services.AddControllers();
