@@ -14,9 +14,13 @@ services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
 
 services.AddHttpClient<IProductService, ProductService>();
+services.AddHttpClient<ICartService, CartService>();
+
 SD.ProductAPIBase = configuration["ServiceUrls:ProductAPI"];
+SD.ShoppingCartAPIBase = configuration["ServiceUrls:ShoppingCartAPI"];
 
 services.AddScoped<IProductService,ProductService>();
+services.AddScoped<ICartService, CartService>();
 
 services.AddAuthentication(opt =>
 {

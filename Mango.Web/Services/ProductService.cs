@@ -22,17 +22,6 @@ namespace Mango.Web.Services
                 AccessToken = token
             });
         }
-
-        public async Task<T> DeleteProductAsync<T>(int id, string token)
-        {
-            return await this.SendAsync<T>(new ApiRequest
-            {
-                ApiType = SD.ApiType.DELETE,
-                Url = SD.ProductAPIBase + "/api/product/" + id,
-                AccessToken = token
-            });
-        }
-
         public async Task<T> GetAllProductsAsync<T>(string token)
         {
             return await this.SendAsync<T>(new ApiRequest
@@ -42,17 +31,15 @@ namespace Mango.Web.Services
                 AccessToken = token
             });
         }
-
         public async Task<T> GetProductByIdAsync<T>(int id, string token)
         {
             return await this.SendAsync<T>(new ApiRequest
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.ProductAPIBase + "/api/product/"+id,
+                Url = SD.ProductAPIBase + "/api/product/" + id,
                 AccessToken = token
             });
         }
-
         public async Task<T> UpdateProductAsync<T>(ProductDto productDto, string token)
         {
             return await this.SendAsync<T>(new ApiRequest
@@ -63,5 +50,14 @@ namespace Mango.Web.Services
                 AccessToken = token
             });
         }
+        public async Task<T> DeleteProductAsync<T>(int id, string token)
+        {
+            return await this.SendAsync<T>(new ApiRequest
+            {
+                ApiType = SD.ApiType.DELETE,
+                Url = SD.ProductAPIBase + "/api/product/" + id,
+                AccessToken = token
+            });
+        }       
     }
 }
