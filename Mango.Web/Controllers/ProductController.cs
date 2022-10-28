@@ -14,7 +14,6 @@ namespace Mango.Web.Controllers
         {
             _productService = productService;
         }
-
         public async Task<IActionResult> ProductIndex()
         {
             List<ProductDto> products = new();
