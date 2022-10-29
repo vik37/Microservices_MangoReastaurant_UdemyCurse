@@ -17,7 +17,7 @@ namespace Mango.Services.CouponAPI.Controllers
             this._response = new ResponseDto();
         }
         [HttpGet("{code}")]
-        public async Task<object> GetDiscountFroCode(string code)
+        public async Task<object> GetDiscountFromCode(string code)
         {
             try
             {

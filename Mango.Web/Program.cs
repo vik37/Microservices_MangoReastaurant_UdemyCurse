@@ -15,12 +15,15 @@ services.AddRazorPages()
 
 services.AddHttpClient<IProductService, ProductService>();
 services.AddHttpClient<ICartService, CartService>();
+services.AddHttpClient<ICouponService, CouponService>();
 
 SD.ProductAPIBase = configuration["ServiceUrls:ProductAPI"];
 SD.ShoppingCartAPIBase = configuration["ServiceUrls:ShoppingCartAPI"];
+SD.CouponAPIBase = configuration["ServiceUrls:CouponAPI"];
 
 services.AddScoped<IProductService,ProductService>();
 services.AddScoped<ICartService, CartService>();
+services.AddScoped<ICouponService, CouponService>();
 
 services.AddAuthentication(opt =>
 {
