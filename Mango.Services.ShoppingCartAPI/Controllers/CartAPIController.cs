@@ -1,4 +1,5 @@
-﻿using Mango.Services.ShoppingCartAPI.Models.Dto;
+﻿using Mango.Services.ShoppingCartAPI.Messages;
+using Mango.Services.ShoppingCartAPI.Models.Dto;
 using Mango.Services.ShoppingCartAPI.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -112,12 +113,31 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             return _response;
         }
         [HttpPost("ClearCart/{userId}")]
-        public async Task<object> CllearCart(string userId)
+        public async Task<object> ClearCart(string userId)
         {
             try
             {
                 bool success = await _cartRepository.ClearCart(userId);
                 _response.Result = success;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string> { ex.Message.ToString() };
+            }
+            return _response;
+        }
+        [HttpPost("Checkout")]
+        public async Task<object> Checkout(CheckoutHeaderDto checkoutHeader)
+        {
+            try
+            {
+                CartDto cartDto = await _cartRepository.GetCartByUserId(checkoutHeader.UserId);
+                if (cartDto == null)
+                    return BadRequest();
+                checkoutHeader.CartDetails = cartDto.CartDetails;
+                // logic to add message to proccess order.
+
             }
             catch (Exception ex)
             {
