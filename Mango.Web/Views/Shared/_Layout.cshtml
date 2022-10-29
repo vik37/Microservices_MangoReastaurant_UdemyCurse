@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.css" />
     <link rel="stylesheet" href="~/lib/Font-Awesome/css/regular.min.css">
     <link rel="stylesheet" href="~/lib/Font-Awesome/css/solid.min.css">
+	<link href="~/lib/jquery-ui-1.13.2.custom/jquery-ui.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -52,9 +53,11 @@
             &copy; 2022 - Mango
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>	    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

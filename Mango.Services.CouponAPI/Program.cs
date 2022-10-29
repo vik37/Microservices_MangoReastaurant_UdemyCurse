@@ -1,5 +1,6 @@
 using AutoMapper;
 using Mango.Services.CouponAPI.DbContexts;
+using Mango.Services.CouponAPI.Repository;
 using Mango.Services.ShoppingCartAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -19,7 +20,7 @@ IMapper mapper = MappingConfig.RegisterMapp().CreateMapper();
 services.AddSingleton(mapper);
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//services.AddScoped<ICartRepository, CartRepository>();
+services.AddScoped<ICouponRepository, CouponRepository>();
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 
