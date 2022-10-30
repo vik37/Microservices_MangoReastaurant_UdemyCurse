@@ -1,4 +1,5 @@
 using AutoMapper;
+using Mango.MessageBus;
 using Mango.Services.ShoppingCartAPI;
 using Mango.Services.ShoppingCartAPI.DbContexts;
 using Mango.Services.ShoppingCartAPI.Repository;
@@ -22,6 +23,7 @@ services.AddSingleton(mapper);
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 services.AddScoped<ICartRepository, CartRepository>();
+services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 
