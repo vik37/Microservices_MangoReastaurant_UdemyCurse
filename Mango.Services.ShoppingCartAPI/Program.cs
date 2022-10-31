@@ -23,7 +23,10 @@ services.AddSingleton(mapper);
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 services.AddScoped<ICartRepository, CartRepository>();
+services.AddScoped<ICouponRepository, CouponRepository>();
 services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+services.AddHttpClient<ICouponRepository, CouponRepository>(u =>
+                                                u.BaseAddress = new Uri(configuration["ServiceUrls:CouponAPI"]));
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 
