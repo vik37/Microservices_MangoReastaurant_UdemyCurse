@@ -13,7 +13,6 @@ namespace Mango.Web.Controllers
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
         private readonly ICouponService _couponService;
-        private bool _cartIsEmpty = true;
         public CartController(IProductService productService, ICartService cartService,
             ICouponService couponService)
         {
