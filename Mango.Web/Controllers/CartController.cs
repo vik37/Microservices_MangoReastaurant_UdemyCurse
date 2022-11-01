@@ -13,6 +13,7 @@ namespace Mango.Web.Controllers
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
         private readonly ICouponService _couponService;
+        private bool _cartIsEmpty = true;
         public CartController(IProductService productService, ICartService cartService,
             ICouponService couponService)
         {
@@ -60,7 +61,11 @@ namespace Mango.Web.Controllers
             var accessToken = await HttpContext.GetTokenAsync("access_token");
             var response = await _cartService.GetCartByUserIdAsync<ResponseDto>(userId, accessToken);
 
-            CartDto cartDto = new();
+            CartDto cartDto = new CartDto
+            {
+                CartDetails = new List<CartDetailsDto>(),
+                CartHeader = new CartHeaderDto()
+            };
             if (response != null && response.IsSuccess)
                 cartDto = JsonConvert.DeserializeObject<CartDto>(Convert.ToString(response.Result));
 
