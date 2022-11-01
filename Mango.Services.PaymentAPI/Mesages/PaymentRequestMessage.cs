@@ -10,5 +10,6 @@ namespace Mango.Services.PaymentAPI.Messages
         public string CVV { get; set; }
         public string ExpireMonthlYear { get; set; }
         public double OrderTotal { get; set; }
+        public string Email { get; set; }
     }
 }
