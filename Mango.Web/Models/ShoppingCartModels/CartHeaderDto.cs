@@ -1,4 +1,6 @@
-﻿namespace Mango.Web.Models.ShoppingCartModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Mango.Web.Models.ShoppingCartModels
 {
     public class CartHeaderDto
     {
@@ -10,6 +12,7 @@
         public double DiscountTotal { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [DisplayFormat(DataFormatString="{0:yyyy-MM-dd}")]
         public DateTime PickupDateTime 
         {
             get
