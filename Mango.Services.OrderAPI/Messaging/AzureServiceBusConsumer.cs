@@ -39,7 +39,7 @@ namespace Mango.Services.OrderAPI.Messaging
             _orderUpdatePaymentResultTopic = _config.GetValue<string>("OrderUpdatePaymentResultTopic");
 
             var client = new ServiceBusClient(_serviceBusConnectionString);
-            _processorForCheckout = client.CreateProcessor(_checkoutMessageTopic, _subscriptionCheckout);
+            _processorForCheckout = client.CreateProcessor(_checkoutMessageTopic);
             _processorForOrderUpdatePayment = client.CreateProcessor(_orderUpdatePaymentResultTopic, _subscriptionCheckout);
         }
         public async Task Start()
@@ -110,7 +110,8 @@ namespace Mango.Services.OrderAPI.Messaging
                 CVV = orderHeader.CVV,
                 ExpireMonthlYear = orderHeader.ExpireMonthlyYear,
                 OrderId = orderHeader.OrderHeaderId,
-                OrderTotal = orderHeader.OrderTotal
+                OrderTotal = orderHeader.OrderTotal,
+                Email = orderHeader.Email
             };
 
             try
