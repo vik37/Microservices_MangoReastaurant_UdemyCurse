@@ -29,7 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentProcessor", "Payment
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.PaymentAPI", "Mango.Services.PaymentAPI\Mango.Services.PaymentAPI.csproj", "{DD82C25F-831B-411F-B17A-DC414B7FB51C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.Email", "Mango.Services.Email\Mango.Services.Email.csproj", "{83DA0998-F0F9-4978-ABF3-9B9CCEC526B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.Email", "Mango.Services.Email\Mango.Services.Email.csproj", "{83DA0998-F0F9-4978-ABF3-9B9CCEC526B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{DECC57FC-A28C-47B9-AED7-6CC3E93F569B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Gateway.Solution", "Mango.Gateway.Solution\Mango.Gateway.Solution.csproj", "{A5A0618D-93C1-4F6B-9D72-DB2A0FE4934E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +81,10 @@ Global
 		{83DA0998-F0F9-4978-ABF3-9B9CCEC526B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83DA0998-F0F9-4978-ABF3-9B9CCEC526B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83DA0998-F0F9-4978-ABF3-9B9CCEC526B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A0618D-93C1-4F6B-9D72-DB2A0FE4934E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A0618D-93C1-4F6B-9D72-DB2A0FE4934E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A0618D-93C1-4F6B-9D72-DB2A0FE4934E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A0618D-93C1-4F6B-9D72-DB2A0FE4934E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +101,7 @@ Global
 		{027593D1-C5E1-48C6-8609-7843BD74EDEF} = {F0789ADD-D374-43DE-BD74-1431C545676F}
 		{DD82C25F-831B-411F-B17A-DC414B7FB51C} = {D30D83D4-1E11-4CB0-933E-0782FC0228A5}
 		{83DA0998-F0F9-4978-ABF3-9B9CCEC526B0} = {D30D83D4-1E11-4CB0-933E-0782FC0228A5}
+		{A5A0618D-93C1-4F6B-9D72-DB2A0FE4934E} = {DECC57FC-A28C-47B9-AED7-6CC3E93F569B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABE4ACE0-1A93-4001-A188-29A7FEBCDDD9}
