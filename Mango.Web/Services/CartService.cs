@@ -79,7 +79,7 @@ namespace Mango.Web.Services
             {
                 ApiType = SD.ApiType.POST,
                 Data = cartHeader,
-                Url = SD.ShoppingCartAPIBase + "/api/cart/checkout",
+                Url = SD.ShoppingCartAPIBase + "/api/cart/Checkout",
                 AccessToken = token
             });
         }
