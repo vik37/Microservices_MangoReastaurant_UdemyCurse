@@ -15,6 +15,15 @@ services.AddScoped<IEmailRepository,EmailRepository>();
 
 var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+#region FANOUT EXCHANGE MESSAGE
+//services.AddHostedService<RabbitMQFanoutPaymentCounsumer>();
+#endregion
+
+#region DIRECT EXCHANGE MESSAGE
+services.AddHostedService<RabbitMQDirectPaymentCounsumer>();
+#endregion
+
 services.AddSingleton(new EmailRepository(optionBuilder.Options));
 services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 

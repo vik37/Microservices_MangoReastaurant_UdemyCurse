@@ -4,6 +4,7 @@ using Mango.Services.OrderAPI;
 using Mango.Services.OrderAPI.DbContexts;
 using Mango.Services.OrderAPI.Extensions;
 using Mango.Services.OrderAPI.Messaging;
+using Mango.Services.OrderAPI.RabbitMQSender;
 using Mango.Services.OrderAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -27,9 +28,21 @@ services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+services.AddHostedService<RabbitMQCheckoutCounsumer>();
+
+#region FANOUT EXCHANGE MESSAGE
+//services.AddHostedService<RabbitMQFanoutPaymentCounsumer>();
+#endregion
+
+#region DIRECT EXCHANGE MESSAGE
+services.AddHostedService<RabbitMQDirectPaymentCounsumer>();
+#endregion
+
 services.AddSingleton(new OrderRepository(optionBuilder.Options));
 services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+services.AddSingleton<IRabbitMQOrderMessageSender, RabbitMQOrderMessageSender>();
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();

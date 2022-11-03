@@ -66,17 +66,14 @@ namespace Mango.Services.PaymentAPI.Messaging
                 Status = result,
                 OrderId = paymentRequestMessage.OrderId,
                 Email = paymentRequestMessage.Email
-            };
-            
-
+            };            
             try
             {
                 await _messageBus.PublishMessage(updatePaymentResultMessage, _orderUpdatePaymentResultTopic);
                 await args.CompleteMessageAsync(args.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 throw;
             }
         }

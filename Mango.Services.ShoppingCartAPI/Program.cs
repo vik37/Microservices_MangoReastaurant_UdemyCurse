@@ -2,6 +2,7 @@ using AutoMapper;
 using Mango.MessageBus;
 using Mango.Services.ShoppingCartAPI;
 using Mango.Services.ShoppingCartAPI.DbContexts;
+using Mango.Services.ShoppingCartAPI.RabbitMQSender;
 using Mango.Services.ShoppingCartAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -25,6 +26,7 @@ services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 services.AddScoped<ICartRepository, CartRepository>();
 services.AddScoped<ICouponRepository, CouponRepository>();
 services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+services.AddSingleton<IRabbitMQCartMessageSender, RabbitMQCartMessageSender>();
 services.AddHttpClient<ICouponRepository, CouponRepository>(u =>
                                                 u.BaseAddress = new Uri(configuration["ServiceUrls:CouponAPI"]));
 services.AddControllers();

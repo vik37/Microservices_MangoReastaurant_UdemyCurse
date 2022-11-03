@@ -119,9 +119,8 @@ namespace Mango.Services.OrderAPI.Messaging
                 await _messageBus.PublishMessage(paymentRequestMessage, _orderPaymentProccessTopic);
                 await args.CompleteMessageAsync(args.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 throw;
             }
         }
