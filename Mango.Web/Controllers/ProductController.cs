@@ -26,7 +26,7 @@ namespace Mango.Web.Controllers
             
             return  View(products);
         }
-        public async Task<IActionResult> CreateProduct()
+        public IActionResult CreateProduct()
         {
             return View();
         }

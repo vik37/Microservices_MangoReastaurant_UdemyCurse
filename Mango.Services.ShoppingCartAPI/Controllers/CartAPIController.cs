@@ -1,6 +1,7 @@
 ﻿using Mango.MessageBus;
 using Mango.Services.ShoppingCartAPI.Messages;
 using Mango.Services.ShoppingCartAPI.Models.Dto;
+using Mango.Services.ShoppingCartAPI.RabbitMQSender;
 using Mango.Services.ShoppingCartAPI.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -18,14 +19,17 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
         private readonly IMessageBus _messageBus;
         protected ResponseDto _response;
         private ICouponRepository _couponRepository;
+        private readonly IRabbitMQCartMessageSender _rabbitMQCartMessageSender;
         public CartAPIController(ICartRepository cartRepository, 
                                     IMessageBus messageBus, 
-                                    ICouponRepository couponRepository)
+                                    ICouponRepository couponRepository,
+                                    IRabbitMQCartMessageSender rabbitMQCartMessageSender)
         {
             _cartRepository = cartRepository;
             _messageBus = messageBus;
             _response = new ResponseDto();
             _couponRepository = couponRepository;
+            _rabbitMQCartMessageSender = rabbitMQCartMessageSender;
         }
         [HttpGet("GetCard/{userId}")]
         public async Task<object> GetCart(string userId)
@@ -158,7 +162,10 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
                 checkoutHeader.CartDetails = cartDto.CartDetails;
                 // logic to add message to proccess order.
                 // await _messageBus.PublishMessage(checkoutHeader, "checkoutmessagetopic");
-                await _messageBus.PublishMessage(checkoutHeader, "checkoutqueue");
+                // await _messageBus.PublishMessage(checkoutHeader, "checkoutqueue");
+
+                // RabbitMQ
+                _rabbitMQCartMessageSender.SendMessage(checkoutHeader, "checkoutqueue");
                 await _cartRepository.ClearCart(checkoutHeader.UserId);
             }
             catch (Exception ex)
