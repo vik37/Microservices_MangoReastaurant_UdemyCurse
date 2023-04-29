@@ -156,7 +156,7 @@ It's about an online food delivery application. Developed in microservices archi
 
 ## Appendix
 
-Order API, Payment API, Email - work by events using **Message Broker** 
+Order API, Payment API, Email - works by events using **Message Broker** 
 - RabbitMQ, 
 - Azzure: Service Buss Message (1. **Queue**, 2. **Topics**);
 
