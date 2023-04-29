@@ -160,7 +160,7 @@ Order API, Payment API, Email - works by events using **Message Broker**
 - RabbitMQ, 
 - Azzure: Service Buss Message (1. **Queue**, 2. **Topics**);
 
-- Images are in the Azure Cloud Storage. 
+- The pictures of the products are in the the Azure Cloud Storage. 
 
 
 ## Badges
