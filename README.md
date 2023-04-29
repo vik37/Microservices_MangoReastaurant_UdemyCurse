@@ -165,8 +165,6 @@ Order API, Payment API, Email - works by events using **Message Broker**
 
 ## Badges
 
-Add badges from somewhere like: [shields.io](https://shields.io/)
-
 [![GitHub language count](https://img.shields.io/github/languages/count/vik37/Microservices_MangoReastaurant_UdemyCurse?style=plastic)](https://img.shields.io/github/languages/count/vik37/Microservices_MangoReastaurant_UdemyCurse?style=plastic)
 
 [![GitHub top language](https://img.shields.io/github/languages/top/vik37/Microservices_MangoReastaurant_UdemyCurse)](https://img.shields.io/github/languages/top/vik37/Microservices_MangoReastaurant_UdemyCurse)
